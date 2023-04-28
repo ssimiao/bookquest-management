@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
 
 import java.security.Key;
-import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -28,9 +27,10 @@ public class ManagementApplication {
     @Bean
     public HttpHeadersProvider customHttpHeadersProvider(@Value("${application.security.jwt.secret-key}")
                                                          String secretKey) {
+        String token = encode("gon", secretKey);
         return instance -> {
             HttpHeaders httpHeaders = new HttpHeaders();
-            httpHeaders.add("Authorization", encode("gon", secretKey));
+            httpHeaders.add("Authorization", "Bearer ".concat(token));
             return httpHeaders;
         };
     }
