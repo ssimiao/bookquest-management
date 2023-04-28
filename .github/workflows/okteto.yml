@@ -19,6 +19,6 @@ jobs:
     - name: "Trigger the pipeline"
       uses: okteto/pipeline@latest
       with:
-        name: pr-${{ github.event.number }}
+        name: bookquest-management
         timeout: 8m
         skipIfExists: true
