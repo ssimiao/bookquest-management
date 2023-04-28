@@ -3,8 +3,12 @@ services:
   api-monitor:
     build:
       context: ./bookquest-monitor
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
-    command: java -jar app.jar
-    volumes:
-      - ./app.jar:/app.jar
+    networks:
+      - network-bookquest
+
+
+networks:
+  network-bookquest:
